@@ -5,5 +5,12 @@
  * @returns {string}
  */
 function showSalary(users, age) {
-  // ваш код...
+  let userNames = '';
+  for (let keys of users) {
+      let age1 = keys.age;
+      if (age >= age1) {
+        userNames += (`${keys.name}, ${keys.balance}\n`);
+      }
+  }
+  return userNames;
 }
