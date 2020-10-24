@@ -5,12 +5,8 @@
  * @returns {string}
  */
 function showSalary(users, age) {
-  let userNames = '';
-  for (let keys of users) {
-      let age1 = keys.age;
-      if (age >= age1) {
-        userNames += (`${keys.name}, ${keys.balance}\n`);
-      }
-  }
-  return userNames;
+  return users
+    .filter((item) => item.age <= age)
+    .map((item) => item.name + ", " + item.balance)
+    .join("\n");
 }
