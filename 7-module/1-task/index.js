@@ -55,18 +55,21 @@ export default class RibbonMenu {
       }
     });
     this.elem.addEventListener('click', (event)=> {
-      let ribbonActive = this.elem.querySelector('.ribbon__item');
+      let ribbonItem = event.target.closest('.ribbon__item');
+      let ribbonActive = this.elem.querySelector('.ribbon__item_active');
+     
       if (ribbonActive){
-        event.preventDefault();
-        ribbonActive.classList.add('ribbon__item_active');
-        new CustomEvent('ribbon-select', {
-        detail: this.categories.id, 
-        bubbles: true 
-        });
-      }
-      if (event.target.closest('.ribbon__inner')){
         ribbonActive.classList.remove('ribbon__item_active');
       } 
+      if (ribbonItem){
+        event.preventDefault();
+        ribbonItem.classList.add('ribbon__item_active');
+        let customEvent = new CustomEvent('ribbon-select', {
+        detail: ribbonItem.dataset.id, 
+        bubbles: true 
+        });
+        this.elem.dispatchEvent(customEvent);
+      }
     });
 }
 }

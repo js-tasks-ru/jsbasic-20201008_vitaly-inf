@@ -73,10 +73,12 @@ export default class Carousel {
     });
     this.elem.addEventListener('click', (event)=> {
       if(event.target.closest('.carousel__button')){
-        new CustomEvent('product-add', {
-          detail: this.slides.id,
+        let id = event.target.closest('.carousel__slide').dataset.id;
+        let customEvent = new CustomEvent('product-add', {
+          detail: id,
           bubbles: true
-        })
+        });
+        this.elem.dispatchEvent(customEvent);
       }
     });
   }
