@@ -1,5 +1,5 @@
-import createElement from '../../assets/lib/create-element.js';
-import ProductCard from '../../6-module/2-task/index.js';
+import createElement from "../../assets/lib/create-element.js";
+import ProductCard from "../../6-module/2-task/index.js";
 
 export default class ProductGrid {
   constructor(products) {
@@ -17,14 +17,21 @@ export default class ProductGrid {
   }
 
   renderContent() {
-    this.sub('inner').innerHTML = '';
+    this.sub("inner").innerHTML = "";
 
     for (let product of this.products) {
-      if (this.filters.noNuts && product.nuts) {continue;}
+      if (this.filters.noNuts && product.nuts) {
+        continue;
+      }
 
-      if (this.filters.vegeterianOnly && !product.vegeterian) {continue;}
+      if (this.filters.vegeterianOnly && !product.vegeterian) {
+        continue;
+      }
 
-      if (this.filters.maxSpiciness !== undefined && product.spiciness > this.filters.maxSpiciness) {
+      if (
+        this.filters.maxSpiciness !== undefined &&
+        product.spiciness > this.filters.maxSpiciness
+      ) {
         continue;
       }
 
@@ -45,5 +52,4 @@ export default class ProductGrid {
   sub(ref) {
     return this.elem.querySelector(`.products-grid__${ref}`);
   }
-
 }
